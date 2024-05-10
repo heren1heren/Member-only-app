@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class=" d-flex flex-column gap-1  vh-100">
+    <header class=" m-lg-1 d-flex  bg-primary-subtle">
+        <h1> Member only Sign Up</h1>
+        <div class="link-wrapper  d-flex gap-3 ms-auto me-5 ">
+            <% if(currentUser) { %>
+                <a href="/" class="text-decoration-none"> Home page</a>
+                <a href="/log-out" class=""> Log out</a>
+                <% } else { %>
+                    <a href="/" class="text-decoration-none"> Home page</a>
+                    <a href="/sign-up" class="text-decoration-none "> Sign Up</a>
+                    <a href="/log-in" class="text-decoration-none ">Log in</a>
+                    <% } %>
+        </div>
+    </header>
+    <main class=" d-flex flex-column flex-grow-1 m-lg-1 gap-4 ">
+        <form Method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">User name</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="simpleuser" required
+                    minlength="8">
+                <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" required
+                    minlength="8" placeholder="simple123456">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="subscribecheck">
+                <label class="form-check-label" for="exampleCheck1">Check me out for nothing</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+        <!-- todo: if error display errors message -->
+        <% if(errors) { %>
+            <ul class="list-group gap-4 flex-wrap flex-row ms-lg-2"> List of errors:</ul>
+            <% errors.forEach(error=> { %>
+                <li class="list-group-item list-group-item-danger">
+                    <%= error.msg %>
+                </li>
+                <% }); %>
+                    <% } %>
+    </main>
+    <footer class="text-center bg-secondary">
+        Make by Heren
+    </footer>
+
+
+</body>
+
+</html>

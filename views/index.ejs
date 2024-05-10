@@ -9,23 +9,78 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body>
-    <% if (currentUser) {%>
-        <h1>WELCOME BACK <%= currentUser.username %>
-        </h1>
-        <a href="/log-out">LOG OUT</a>
-        <% } else { %>
-            <h1>please log in</h1>
-            <form action="/log-in" method="POST" class="">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input name="username" placeholder="username" type="text" />
-                    <label for="password">Password</label>
-                    <input name="password" type="password" />
-                    <button>Log In</button>
+<body class=" d-flex flex-column gap-1  vh-100">
+    <header class=" m-lg-1 d-flex  bg-primary-subtle">
+        <h1> Member only</h1>
+        <div class="link-wrapper  d-flex gap-3 ms-auto me-5 ">
+
+
+            <% if(currentUser) { %>
+                <a href="/" class="text-decoration-none"> Home page</a>
+                <a href="/log-out" class=""> Log out</a>
+                <% } else { %>
+                    <a href="/" class="text-decoration-none"> Home page</a>
+                    <a href="/sign-up" class="text-decoration-none "> Sign Up</a>
+                    <a href="/log-in" class="text-decoration-none ">Log in</a>
+                    <% } %>
+        </div>
+    </header>
+    <main class=" d-flex flex-column flex-grow-1 m-lg-1 gap-4 ">
+
+        <ul class="list-group gap-4 flex-wrap flex-row">
+            <!-- if not sign in :-->
+            <!-- populate automatically later-->
+            <!-- overflow: scroll?-->
+            <li class="list-group-item list-group-item-primary">
+                <p>A simple primary list group item</p>
+                <p class="author-name"> Made By: Ananomous</p>
+            </li>
+            <li class="list-group-item list-group-item-primary">A simple secondary list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple success list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple danger list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple warning list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple info list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple light list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
+            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
+
+        </ul>
+        <!-- if sign in-->
+        <% if (currentUser) {%>
+            <form method="POST" action="">
+                <p>Post comment:</p>
+                <div class="form-group border d-flex gap-2 flex-column">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Author</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="authorinput">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-text">Content</span>
+                        <textarea class="form-control" aria-label="With textarea" placeholder="Hello World!"
+                            name="contentinput"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn align-self-center">Post comment</button>
+
                 </div>
             </form>
-            <%}%>
+            <% } else { %>
+                <div class=" flex-grow-1 text-center flex-column justify-content-center align-items-center d-flex">
+                    <p>Log in to post
+                        comment</p>
+                </div>
+
+                <% } %>
+
+    </main>
+    <footer class="text-center bg-secondary">
+        Make by Heren
+    </footer>
+
+
 </body>
 
 </html>
