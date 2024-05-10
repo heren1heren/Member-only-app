@@ -1,11 +1,22 @@
 /////// app.js
-const bcrypt = require('bcryptjs');
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
+import 'dotenv/config';
+// const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
+import express from 'express';
+// const express = require('express');
+// const path = require('path');
+import path, { join } from 'path';
+// const session = require('express-session');
+import session from 'express-session';
+import passport from 'passport';
+import LocalStrategy from 'passport-local/lib/strategy.js';
+// const LocalStrategy = require('passport-local').Strategy; // delete it latter
+// moving mongoose data to another file
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const mongoDb =
   'mongodb+srv://heren1heren:Heren123.@cluster0.lo67o6h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -22,7 +33,7 @@ const User = mongoose.model(
 );
 
 const app = express();
-app.set('views', __dirname);
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true })); // first global middleware function
