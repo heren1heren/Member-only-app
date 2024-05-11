@@ -40,11 +40,14 @@
         <!-- todo: if error display errors message -->
         <% if(errors) { %>
             <ul class="list-group gap-4 flex-wrap flex-row ms-lg-2"> List of errors:</ul>
-            <% errors.forEach(error=> { %>
+            <% for (let i=0; i < errors.length;i++) {%>
+
+
                 <li class="list-group-item list-group-item-danger">
-                    <%= error.msg %>
+                    hello
+                    <%= errors[i].msg %>
                 </li>
-                <% }); %>
+                <% }; %>
                     <% } %>
     </main>
     <footer class="text-center bg-secondary">

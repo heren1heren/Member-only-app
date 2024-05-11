@@ -9,7 +9,10 @@ const verifyCallback = async (username, password, done) => {
   try {
     const user = await User.findOne({ username: username });
     if (!user) {
-      return done(null, false, { message: 'Incorrect username' }); // how to extract message from done to display error to user?
+      return done(null, false, { message: 'Incorrect username' });
+      // where this return statement is returned to? I don't understand what does done() do too.
+
+      // how to extract message from done to display error to user?
     }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {

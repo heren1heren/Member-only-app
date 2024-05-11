@@ -26,55 +26,73 @@
         </div>
     </header>
     <main class=" d-flex flex-column flex-grow-1 m-lg-1 gap-4 ">
+        <% if (comments.length) { %>
+            <ul class="list-group gap-4 flex-wrap flex-row">
+                <!-- if not sign in :-->
+                <!-- populate automatically later-->
+                <!-- overflow: scroll?-->
+                <% for (let i=0; i < comments.length; i++) { %>
+                    <li class="list-group-item list-group-item-primary">
+                        <p>
+                            <%= comments[i].message%>
+                        </p>
+                        <% if (currentUser) { %>
+                            <p class="author"> Made by: <%= comments[i].author %>
+                            </p>
+                            <% } else { %>
+                                <p class="author"> Made by: <span class="blurry-text">anonymous</s>
+                                        <% } %>
 
-        <ul class="list-group gap-4 flex-wrap flex-row">
-            <!-- if not sign in :-->
-            <!-- populate automatically later-->
-            <!-- overflow: scroll?-->
-            <li class="list-group-item list-group-item-primary">
-                <p>A simple primary list group item</p>
-                <p class="author-name"> Made By: Ananomous</p>
-            </li>
-            <li class="list-group-item list-group-item-primary">A simple secondary list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple success list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple danger list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple warning list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple info list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple light list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
-            <li class="list-group-item list-group-item-primary">A simple dark list group item</li>
+                    </li>
 
-        </ul>
-        <!-- if sign in-->
-        <% if (currentUser) {%>
-            <form method="POST" action="">
-                <p>Post comment:</p>
-                <div class="form-group border d-flex gap-2 flex-column">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Author</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="authorinput">
-                    </div>
+                    <% } %>
 
-                    <div class="input-group">
-                        <span class="input-group-text">Content</span>
-                        <textarea class="form-control" aria-label="With textarea" placeholder="Hello World!"
-                            name="contentinput"></textarea>
-                    </div>
 
-                    <button type="submit" class="btn-primary btn align-self-center">Post comment</button>
-
-                </div>
-            </form>
-            <% } else { %>
-                <div class=" flex-grow-1 text-center flex-column justify-content-center align-items-center d-flex">
-                    <p>Log in to post
-                        comment</p>
-                </div>
-
+            </ul>
+            <% } else {%>
+                <p>no comment yet, be the first one to comment.</p>
                 <% } %>
+                    <!-- if sign in-->
+                    <% if (currentUser) {%>
+                        <form method="POST" action="">
+                            <p>Post comment:</p>
+                            <div class="form-group border d-flex gap-2 flex-column">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Author</span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-default" name="authorinput">
+                                </div>
 
+                                <div class="input-group">
+                                    <span class="input-group-text">Content</span>
+                                    <textarea class="form-control" aria-label="With textarea" placeholder="Hello World!"
+                                        name="contentinput"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn-primary btn align-self-center">Post comment</button>
+
+                            </div>
+                        </form>
+                        <% } else { %>
+                            <div
+                                class=" flex-grow-1 text-center flex-column justify-content-center align-items-center d-flex">
+                                <p>Log in to post
+                                    comment</p>
+                            </div>
+
+                            <% } %>
+
+                                <% if(errors) { %>
+                                    <ul class="list-group gap-4 flex-wrap flex-row ms-lg-2"> List of errors:</ul>
+                                    <% for (let i=0; i < errors.length;i++) {%>
+
+
+                                        <li class="list-group-item list-group-item-danger">
+                                            hello
+                                            <%= errors[i].msg %>
+                                        </li>
+                                        <% }; %>
+                                            <% } %>
     </main>
     <footer class="text-center bg-secondary">
         Make by Heren
