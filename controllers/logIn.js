@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import bcrypt from 'bcryptjs';
+
 import passport from 'passport';
 import { body, validationResult } from 'express-validator';
 export const logInGet = asyncHandler((req, res) =>
@@ -20,14 +20,14 @@ export const logOutGet = asyncHandler((req, res, next) => {
 });
 export const logInPost = [
   [
-    body('username').trim().isLength({ min: 8 }).escape(),
+    body('username').trim().isLength({ min: 1 }).escape(),
     body('password').trim().isLength({ min: 8 }).escape(),
   ],
   async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors);
-      res.render('login-form', { errors: errors });
+      res.render('login-form', { errors: errors.errors });
       return;
     }
     next();

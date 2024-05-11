@@ -1,9 +1,5 @@
 import { Router } from 'express';
-import asyncHandler from 'express-async-handler';
-import passport from 'passport';
-import { User } from '../mongodb.js';
-import bcrypt from 'bcryptjs';
-import { body, validationResult } from 'express-validator';
+
 import * as indexController from '../controllers/index.js';
 import * as signUpController from '../controllers/signUp.js';
 import * as logInController from '../controllers/logIn.js';
@@ -23,6 +19,7 @@ router.get('/log-out', logInController.logOutGet);
 //* POST HTTPS HANDLERS
 //index
 router.post('/', indexController.indexPost);
+router.post('/:id/delete', indexController.commentDeletePost);
 //sign up
 router.post('/sign-up', signUpController.signUpPost);
 // log in

@@ -1,10 +1,17 @@
 import asyncHandler from 'express-async-handler';
-import bcrypt from 'bcryptjs';
+
 import { body, validationResult } from 'express-validator';
 import { Comments } from '../models/comment.js';
 export const index = asyncHandler(async (req, res) => {
   const comments = await Comments.find().exec();
-  res.render('index', { errors: undefined, comments });
+
+  console.log(res.locals);
+  const user = res.locals.currentUser;
+  if (user) {
+    res.render('index', { errors: undefined, comments, isAdmin: true });
+    return;
+  }
+  res.render('index', { errors: undefined, comments, isAdmin: false });
 });
 
 export const indexPost = [
@@ -29,3 +36,8 @@ export const indexPost = [
     res.redirect('/');
   }),
 ];
+export const commentDeletePost = asyncHandler(async (req, res, next) => {
+  // get comment id when we create the comment
+  console.log(req.body);
+  res.redirect('/');
+});
