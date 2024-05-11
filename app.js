@@ -1,6 +1,3 @@
-/////// app.js
-import 'dotenv/config';
-// need to import the whol authentication.js into app.js
 import './authentication.js';
 import express from 'express';
 import path, { join } from 'path';
@@ -8,7 +5,7 @@ import session from 'express-session';
 import passport from 'passport';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
-import { User } from './mongodb.js';
+
 const __dirname = path.dirname(__filename);
 import { strategy } from './authentication.js';
 import { log } from 'console';
@@ -23,7 +20,9 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
+  console.log(req.user);
   res.locals.currentUser = req.user;
+
   next();
 });
 

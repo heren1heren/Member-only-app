@@ -3,11 +3,10 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { User } from './mongodb.js';
 const verifyCallback = async (username, password, done) => {
-  //
-  console.log('access passport authentication process');
-  // it doesn't go here
   try {
+    // I want to search through User and Admin models both at the same time but can not figure out so I do these
     const user = await User.findOne({ username: username });
+
     if (!user) {
       return done(null, false, { message: 'Incorrect username' });
       // where this return statement is returned to? I don't understand what does done() do too.
@@ -18,7 +17,7 @@ const verifyCallback = async (username, password, done) => {
     if (!match) {
       // passwords do not match!
 
-      return done(null, false, { message: 'Incorrect password' }); // I don't know how to handle done() to get this message
+      return done(null, false, { message: 'Incorrect password' });
       // test it
     }
     return done(null, user);

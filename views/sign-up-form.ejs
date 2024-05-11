@@ -28,7 +28,7 @@
             <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="simpleuser" required
-                    minlength="8">
+                    minlength="1">
                 <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
             </div>
             <div class="mb-3">
@@ -37,19 +37,20 @@
                     minlength="8" placeholder="simple123456">
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="subscribecheck">
-                <label class="form-check-label" for="exampleCheck1">Check me out for nothing</label>
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="isadmin">
+
+                <label class="form-check-label" for="exampleCheck1">is Admin</label>
             </div>
             <button type="submit" class="btn btn-primary">Sign up</button>
         </form>
         <!-- todo: if error display errors message -->
         <% if(errors) { %>
             <ul class="list-group gap-4 flex-wrap flex-row ms-lg-2"> List of errors:</ul>
-            <% errors.forEach(error=> { %>
+            <% for(let i=0;i <errors.length;i++) { %>
                 <li class="list-group-item list-group-item-danger">
-                    <%= error.msg %>
+                    <%= errors[i].msg %>
                 </li>
-                <% }); %>
+                <% }; %>
                     <% } %>
     </main>
     <footer class="text-center bg-secondary">
